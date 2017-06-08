@@ -18,22 +18,25 @@ class PhoneNumberTestCase(unittest.TestCase, BaseTestCase):
             )
 
     def test_american_phone_number(self):
-        """test american-style phone numbers"""
+        """test GB-style phone numbers"""
         self.check_phone_numbers(
-            '1-312-515-2239',
-            '+1-312-515-2239',
-            '1 (312) 515-2239',
-            '312-515-2239',
-            '(312) 515-2239',
-            '(312)515-2239',
+            '02079461234',
+            '0207 946 1234',
+            '+442079461234',
+            '07912345678',
+            '+447912345678',
+            '08081 570123',
+            '0909 8790123',
+            '(03069) 990123',
+            '03069 990123',
         )
 
     def test_extension_phone_numbers(self):
         """test phone numbers with extensions"""
         self.check_phone_numbers(
-            '312-515-2239 x12',
-            '312-515-2239 ext. 12',
-            '312-515-2239 ext.12',
+            '0207-946-1234 x12',
+            '0207-946-1234 ext. 12',
+            '0207-946-1234 ext.12',
         )
 
     def test_international_phone_numbers(self):
@@ -51,7 +54,7 @@ class PhoneNumberTestCase(unittest.TestCase, BaseTestCase):
         # running this through scrubadub.clean replaces 'reached at
         # 312.714.8142' with '{{EMAIL}}'. See issue
         result = self.clean(
-            u'Call me on my cell 312.714.8142 or in my office 773.415.7432'
+            u'Call me on my cell 07912345678 or in my office 02079461234'
         )
         self.assertEqual(
             result,

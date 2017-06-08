@@ -15,7 +15,7 @@ class PhoneDetector(Detector):
     ``+`` to be considered.
     """
     filth_cls = PhoneFilth
-    region = 'US'
+    region = 'GB'
 
     def iter_filth(self, text):
         # create a copy of text to handle multiple phone numbers correctly
