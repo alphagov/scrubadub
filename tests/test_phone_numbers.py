@@ -4,51 +4,135 @@ from base import BaseTestCase
 
 
 class PhoneNumberTestCase(unittest.TestCase, BaseTestCase):
+    """
+    Numbers with 10 consecutive digits will clash with passport numbers.
+    """
+     
+    def test_GB_phone_number(self):
+        """
+        BEFORE: My phone number is 02079461234.
+        AFTER:  My phone number is {{PHONE+PASSPORT}}.
+        """
+        self.compare_before_after()
 
-    def create_docstring(self, phone_number):
-        return """
-        BEFORE: My phone number is %s
-        AFTER:  My phone number is {{PHONE}}
-        """ % phone_number
+    def test_GB_phone_number(self):
+        """
+        BEFORE: My phone number is 0207 946 1234.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+ 
+    def test_GB_phone_number_with_int_code(self):
+        """
+        BEFORE: My phone number is +442079461234.
+        AFTER:  My phone number is {{PHONE+PASSPORT}}.
+        """
+        self.compare_before_after()
+    
+    def test_GB_mobile_number(self):
+        """
+        BEFORE: My phone number is 07912345678.
+        AFTER:  My phone number is {{PHONE+PASSPORT}}.
+        """
+        self.compare_before_after()
+        
+    def test_GB_mobile_number_with_int_code(self):
+        """
+        BEFORE: My phone number is +447912345678.
+        AFTER:  My phone number is {{PHONE+PASSPORT}}.
+        """
+        self.compare_before_after()
 
-    def check_phone_numbers(self, *phone_numbers):
-        for phone_number in phone_numbers:
-            self.compare_before_after(
-                docstring=self.create_docstring(phone_number),
-            )
+    def test_GB_phone_number_with_space(self):
+        """
+        BEFORE: My phone number is 08081 570123.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
 
-    def test_american_phone_number(self):
-        """test GB-style phone numbers"""
-        self.check_phone_numbers(
-            '02079461234',
-            '0207 946 1234',
-            '+442079461234',
-            '07912345678',
-            '+447912345678',
-            '08081 570123',
-            '0909 8790123',
-            '(03069) 990123',
-            '03069 990123',
-        )
+    def test_GB_phone_number_with_space2(self):
+        """
+        BEFORE: My phone number is 0909 8790123.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+            
+    def test_GB_phone_number_with_brackets(self):
+        """
+        BEFORE: My phone number is (03069) 990123.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+            
+    def test_GB_phone_number_with_space3(self):
+        """
+        BEFORE: My phone number is 03069 990123.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
 
-    def test_extension_phone_numbers(self):
-        """test phone numbers with extensions"""
-        self.check_phone_numbers(
-            '0207-946-1234 x12',
-            '0207-946-1234 ext. 12',
-            '0207-946-1234 ext.12',
-        )
+    def test_extension_phone_number1(self):
+        """
+        BEFORE: My phone number is 0207-946-1234 x12.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+    
+    def test_extension_phone_number2(self):
+        """
+        BEFORE: My phone number is 0207-946-1234 ext. 12.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
 
-    def test_international_phone_numbers(self):
-        """test international phone numbers"""
-        self.check_phone_numbers(
-            '+47 21 30 85 99',
-            '+45 69 19 88 56',
-            '+46 852 503 499',
-            '+31 619 837 236',
-            '+86 135 3727 4136',
-            '+61267881324',
-        )
+    def test_extension_phone_number3(self):
+        """
+        BEFORE: My phone number is 0207-946-1234 ext.12.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+        
+    def test_international_phone_number1(self):
+        """
+        BEFORE: My phone number is +47 21 30 85 99.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+
+    def test_international_phone_number2(self):
+        """
+        BEFORE: My phone number is +45 69 19 88 56.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+
+    def test_international_phone_number3(self):
+        """
+        BEFORE: My phone number is +46 852 503 499.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+
+    def test_international_phone_number4(self):
+        """
+        BEFORE: My phone number is +31 619 837 236.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+        
+    def test_international_phone_number5(self):
+        """
+        BEFORE: My phone number is +86 135 3727 4136.
+        AFTER:  My phone number is {{PHONE}}.
+        """
+        self.compare_before_after()
+
+    def test_international_phone_number6(self):
+        """
+        BEFORE: My phone number is +61267881324.
+        AFTER:  My phone number is {{PHONE+PASSPORT}}.
+        """
+        self.compare_before_after()
 
     def test_multiple_phone_numbers(self):
         # running this through scrubadub.clean replaces 'reached at
@@ -58,6 +142,6 @@ class PhoneNumberTestCase(unittest.TestCase, BaseTestCase):
         )
         self.assertEqual(
             result,
-            u'Call me on my cell {{PHONE}} or in my office {{PHONE}}',
+            u'Call me on my cell {{PHONE+PASSPORT}} or in my office {{PHONE+PASSPORT}}',
             'problem with multiple phone numbers: \n %s' % result,
         )
