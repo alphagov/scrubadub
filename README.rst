@@ -19,10 +19,8 @@ Clean personally identifiable information from dirty dirty text.
 
 .. |Build Status| image:: https://travis-ci.org/datascopeanalytics/scrubadub.svg?branch=master
    :target: https://travis-ci.org/datascopeanalytics/scrubadub
-.. |Version| image:: https://pypip.in/v/scrubadub/badge.png
-   :target: https://warehouse.python.org/project/scrubadub/
-.. |Downloads| image:: https://pypip.in/d/scrubadub/badge.png
-   :target: https://warehouse.python.org/project/scrubadub/
+.. |Version| image:: https://img.shields.io/github/tag/expressjs/express.svg
+   :target: https://github.com/ivyleavedtoadflax/scrubadub/tags/
 .. |Test Coverage| image:: https://coveralls.io/repos/datascopeanalytics/scrubadub/badge.png
    :target: https://coveralls.io/r/datascopeanalytics/scrubadub
 .. |Documentation Status| image:: https://readthedocs.org/projects/scrubadub/badge/?version=latest
