@@ -4,7 +4,7 @@ from .base import RegexDetector
 from ..filth import NinoFilth
 
 
-class EmailDetector(RegexDetector):
+class NinoDetector(RegexDetector):
     """
     Use regex to find National Insurance Numbers (NINOs)
     """
