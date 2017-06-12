@@ -8,6 +8,7 @@ python:
 install:
   - pip install -r requirements/python-dev
   - python -m textblob.download_corpora
+  - pip install codecov
 
 # commands to run the testing suite. if any of these fail, travic lets us know
 script:
@@ -17,4 +18,4 @@ script:
 
 # commands to run after the tests successfully complete
 after_success:
-  - coveralls
+  - codecov
