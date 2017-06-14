@@ -11,6 +11,23 @@ latest changes in development for next release
 
 .. THANKS FOR CONTRIBUTING; MENTION WHAT YOU DID IN THIS SECTION HERE!
 
+2.0.0
+-----
+
+Note that this is now on the ukgovdatascience fork.
+
+* Add python 3 compatibility (i.e. merge `#31 <https://github.com/datascopeanalytics/scrubadub/pull/31>`_)
+
+* Add detection for National Insurance Numbers (NINOs) (`#1`_)
+
+* **Switch to GB from US phone number detection** (`#2`_) 
+
+* Add detection for UK vehicle registratin numbers (`#3`_) 
+
+* Add detection for credit card numbers (`#4`_) 
+
+* Add detection for passport numbers (`#5`_) 
+
 1.1.1
 -----
 
