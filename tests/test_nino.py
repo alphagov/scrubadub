@@ -15,13 +15,30 @@ class NinoTestCase(unittest.TestCase, BaseTestCase):
         AFTER:  My nino is {{NINO}}.
         """
         self.compare_before_after()
-
+    
+    def test_lowercase_nino(self):
+        """
+        BEFORE: My nino is ab121314c.
+        AFTER:  My nino is {{NINO}}.
+        """
+        self.compare_before_after()
+        
     def test_nino_with_spaces(self):
         """
         Note strange behaviour here, despite regex including 'B' in second
         character, it does not seem to be found by the regex, See next test
 
         BEFORE: My nino is AC 121314 C.
+        AFTER:  My nino is {{NINO}}.
+        """
+        self.compare_before_after()
+
+    def test_lower_case_nino_with_spaces(self):
+        """
+        Note strange behaviour here, despite regex including 'B' in second
+        character, it does not seem to be found by the regex, See next test
+
+        BEFORE: My nino is ac 121314 c.
         AFTER:  My nino is {{NINO}}.
         """
         self.compare_before_after()
@@ -54,3 +71,9 @@ class NinoTestCase(unittest.TestCase, BaseTestCase):
         """
         self.compare_before_after()
 
+    def test_lower_case_nino_missing_last_character(self):
+        """
+        BEFORE: My nino is ab121314.
+        AFTER:  My nino is {{NINO}}.
+        """
+        self.compare_before_after()
