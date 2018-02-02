@@ -11,6 +11,7 @@ class NinoFilth(RegexFilth):
 
     regex = re.compile((
         "(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)"  # Disallowed combinations
-        "(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-PR-TW-Z])"      # First two digits
-        "(?:\s*\d\s*){6}(?:[A-D])?"                   # Digits and final char?
+        "(?:([A-CEGHJ-PR-TW-Z]|[a-ceghj-pr-tw-z])"    # First two digits
+        "([A-CEGHJ-PR-TW-Z]|[a-ceghj-pr-tw-z]))"
+        "(?:\s*\d\s*){6}(?:([A-D]|[a-d]))?"           # Digits and final char?
     ), re.VERBOSE)

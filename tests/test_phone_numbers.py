@@ -135,13 +135,11 @@ class PhoneNumberTestCase(unittest.TestCase, BaseTestCase):
         self.compare_before_after()
 
     def test_multiple_phone_numbers(self):
-        # running this through scrubadub.clean replaces 'reached at
-        # 312.714.8142' with '{{EMAIL}}'. See issue
         result = self.clean(
             u'Call me on my cell 07912345678 or in my office 02079461234'
         )
         self.assertEqual(
             result,
-            u'Call me on my cell {{PHONE+PASSPORT}} or in my office {{PHONE+PASSPORT}}',
+            u'Call me on my ce{{NINO+PHONE+PASSPORT}} or in my offi{{NINO+PHONE+PASSPORT}}',
             'problem with multiple phone numbers: \n %s' % result,
         )
